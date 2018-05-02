@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{A30EDDA5-007A-43F9-A377-5467270823D1}</ProjectGuid>
+    <ProjectGuid>{7C685B46-2EE1-4A90-939D-2D5C2DC39607}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Win32Cone</RootNamespace>
+    <RootNamespace>SmartVolumeMapper</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -154,10 +154,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
