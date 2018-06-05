@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Win32Cone", "Win32Cone\Win3
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SmartVolumeMapper", "SmartVolumeMapper\SmartVolumeMapper.vcxproj", "{7C685B46-2EE1-4A90-939D-2D5C2DC39607}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MarchingCubes", "MarchingCubes\MarchingCubes.vcxproj", "{D91860E0-E745-464E-A61F-947595E9D454}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{7C685B46-2EE1-4A90-939D-2D5C2DC39607}.Release|x64.Build.0 = Release|x64
 		{7C685B46-2EE1-4A90-939D-2D5C2DC39607}.Release|x86.ActiveCfg = Release|Win32
 		{7C685B46-2EE1-4A90-939D-2D5C2DC39607}.Release|x86.Build.0 = Release|Win32
+		{D91860E0-E745-464E-A61F-947595E9D454}.Debug|x64.ActiveCfg = Debug|x64
+		{D91860E0-E745-464E-A61F-947595E9D454}.Debug|x64.Build.0 = Debug|x64
+		{D91860E0-E745-464E-A61F-947595E9D454}.Debug|x86.ActiveCfg = Debug|Win32
+		{D91860E0-E745-464E-A61F-947595E9D454}.Debug|x86.Build.0 = Debug|Win32
+		{D91860E0-E745-464E-A61F-947595E9D454}.Release|x64.ActiveCfg = Release|x64
+		{D91860E0-E745-464E-A61F-947595E9D454}.Release|x64.Build.0 = Release|x64
+		{D91860E0-E745-464E-A61F-947595E9D454}.Release|x86.ActiveCfg = Release|Win32
+		{D91860E0-E745-464E-A61F-947595E9D454}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
