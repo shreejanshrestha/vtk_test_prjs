@@ -161,12 +161,12 @@
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
-    <Import Project="..\packages\vtk.8.1.0\build\native\vtk.targets" Condition="Exists('..\packages\vtk.8.1.0\build\native\vtk.targets')" />
+    <Import Project="..\packages\shreejan.vtk.1.0.0\build\native\shreejan.vtk.targets" Condition="Exists('..\packages\shreejan.vtk.1.0.0\build\native\shreejan.vtk.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\vtk.8.1.0\build\native\vtk.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\vtk.8.1.0\build\native\vtk.targets'))" />
+    <Error Condition="!Exists('..\packages\shreejan.vtk.1.0.0\build\native\shreejan.vtk.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\shreejan.vtk.1.0.0\build\native\shreejan.vtk.targets'))" />
   </Target>
 </Project>

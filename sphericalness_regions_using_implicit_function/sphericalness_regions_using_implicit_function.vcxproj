@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D91860E0-E745-464E-A61F-947595E9D454}</ProjectGuid>
+    <ProjectGuid>{CFAF8F9A-B62C-476F-A0ED-B771EE9AC9F8}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>MarchingCubes</RootNamespace>
+    <RootNamespace>sphericalness_regions_using_implicit_function</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

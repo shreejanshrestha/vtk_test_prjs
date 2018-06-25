@@ -12,20 +12,23 @@
 #include <vtkRenderWindow.h>
 #include <vtkRenderer.h>
 #include <vtkAutoInit.h>
+#include <vtkSTLWriter.h>
 
 VTK_MODULE_INIT(vtkRenderingOpenGL2);
 VTK_MODULE_INIT(vtkInteractionStyle);
 VTK_MODULE_INIT(vtkRenderingVolumeOpenGL2);
 
+// argv[1] = dicom folder
+// argv[2] = isoValue
+// argv[3] = output stl path
+
 int main(int argc, char *argv[])
 {
-	vtkSmartPointer<vtkImageData> volume =
-		vtkSmartPointer<vtkImageData>::New();
+	vtkSmartPointer<vtkImageData> volume = vtkSmartPointer<vtkImageData>::New();
 	double isoValue;
 	if(argc < 3)
 	{
-		vtkSmartPointer<vtkSphereSource> sphereSource =
-			vtkSmartPointer<vtkSphereSource>::New();
+		vtkSmartPointer<vtkSphereSource> sphereSource = vtkSmartPointer<vtkSphereSource>::New();
 		sphereSource->SetPhiResolution(20);
 		sphereSource->SetThetaResolution(20);
 		sphereSource->Update();
@@ -38,8 +41,7 @@ int main(int argc, char *argv[])
 			bounds[i]   = bounds[i] - .1 * range;
 			bounds[i+1] = bounds[i+1] + .1 * range;
 		}
-		vtkSmartPointer<vtkVoxelModeller> voxelModeller =
-			vtkSmartPointer<vtkVoxelModeller>::New();
+		vtkSmartPointer<vtkVoxelModeller> voxelModeller = vtkSmartPointer<vtkVoxelModeller>::New();
 		voxelModeller->SetSampleDimensions(50, 50, 50);
 		voxelModeller->SetModelBounds(bounds);
 		voxelModeller->SetScalarTypeToFloat();
@@ -52,16 +54,14 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		vtkSmartPointer<vtkDICOMImageReader> reader =
-			vtkSmartPointer<vtkDICOMImageReader>::New();
+		vtkSmartPointer<vtkDICOMImageReader> reader = vtkSmartPointer<vtkDICOMImageReader>::New();
 		reader->SetDirectoryName(argv[1]);
 		reader->Update();
 		volume->DeepCopy(reader->GetOutput());
 		isoValue = atof(argv[2]);
 	}
 
-	vtkSmartPointer<vtkMarchingCubes> surface =
-		vtkSmartPointer<vtkMarchingCubes>::New();
+	vtkSmartPointer<vtkMarchingCubes> surface = vtkSmartPointer<vtkMarchingCubes>::New();
 
 #if VTK_MAJOR_VERSION <= 5
 	surface->SetInput(volume);
@@ -71,24 +71,29 @@ int main(int argc, char *argv[])
 	surface->ComputeNormalsOn();
 	surface->SetValue(0, isoValue);
 
-	vtkSmartPointer<vtkRenderer> renderer =
-		vtkSmartPointer<vtkRenderer>::New();
+	if(argc >= 4)
+	{
+		surface->Update();
+		std::string outPath(argv[3]);
+		auto stlWriter = vtkSmartPointer<vtkSTLWriter>::New();
+		stlWriter->SetFileName(outPath.c_str());
+		stlWriter->SetInputData(surface->GetOutput());
+		stlWriter->Update();
+	}
+
+	vtkSmartPointer<vtkRenderer> renderer = vtkSmartPointer<vtkRenderer>::New();
 	renderer->SetBackground(.1, .2, .3);
 
-	vtkSmartPointer<vtkRenderWindow> renderWindow =
-		vtkSmartPointer<vtkRenderWindow>::New();
+	vtkSmartPointer<vtkRenderWindow> renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
 	renderWindow->AddRenderer(renderer);
-	vtkSmartPointer<vtkRenderWindowInteractor> interactor =
-		vtkSmartPointer<vtkRenderWindowInteractor>::New();
+	vtkSmartPointer<vtkRenderWindowInteractor> interactor = vtkSmartPointer<vtkRenderWindowInteractor>::New();
 	interactor->SetRenderWindow(renderWindow);
 
-	vtkSmartPointer<vtkPolyDataMapper> mapper =
-		vtkSmartPointer<vtkPolyDataMapper>::New();
+	vtkSmartPointer<vtkPolyDataMapper> mapper = vtkSmartPointer<vtkPolyDataMapper>::New();
 	mapper->SetInputConnection(surface->GetOutputPort());
 	mapper->ScalarVisibilityOff();
 
-	vtkSmartPointer<vtkActor> actor =
-		vtkSmartPointer<vtkActor>::New();
+	vtkSmartPointer<vtkActor> actor = vtkSmartPointer<vtkActor>::New();
 	actor->SetMapper(mapper);
 
 	renderer->AddActor(actor);
